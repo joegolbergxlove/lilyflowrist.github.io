@@ -1,0 +1,202 @@
+/* --- GLOBAL & LIGHT MODE STYLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdecea;
+    color: #555;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #e91e63;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card h3 {
+    margin-top: 0;
+    color: #c2185b;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.product-card p {
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.product-card .price {
+    color: #e91e63;
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-top: 15px;
+}
+
+#theme-switcher {
+    position: fixed; /* Tetap di layar saat scroll */
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #f48fb1;
+    background-color: #ffffff;
+    color: #e91e63;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1000; /* Memastikan tombol di atas elemen lain */
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- DARK MODE STYLES --- */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode h1,
+body.dark-mode .product-card .price {
+    color: #f48fb1;
+}
+
+body.dark-mode .product-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+}
+
+body.dark-mode .product-card h3 {
+    color: #f8c0c8;
+}
+
+body.dark-mode #theme-switcher {
+    background-color: #1e1e1e;
+    border-color: #f48fb1;
+    color: #f48fb1;
+}
+
+/* --- FOOTER STYLES --- */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #f48fb1;
+    color: #c2185b;
+}
+
+footer a {
+    color: #e91e63;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #c2185b;
+}
+
+/* Style footer untuk Dark Mode */
+body.dark-mode footer {
+    border-top-color: #333;
+    color: #f48fb1;
+}
+
+body.dark-mode footer a {
+    color: #f8c0c8;
+}
+
+body.dark-mode footer a:hover {
+    color: #f48fb1;
+}
+
+/* Tambahkan ini di mana saja di dalam file style.css */
+
+.product-thumbnail {
+    width: 100%; /* Membuat gambar memenuhi lebar kartu */
+    height: 200px; /* Memberi tinggi yang seragam */
+    object-fit: cover; /* Memastikan gambar tidak gepeng, tapi terpotong rapi */
+    border-radius: 10px; /* Sedikit sudut tumpul pada gambar */
+    margin-bottom: 15px; /* Memberi jarak antara gambar dan judul */
+}
+
+/* --- SLIDER STYLES --- */
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Sesuaikan dengan tinggi gambar */
+    overflow: hidden; /* Menyembunyikan gambar di luar container */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Animasi geser */
+}
+
+.product-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0; /* Mencegah gambar menyusut */
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.slider-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.slider-button.prev {
+    left: 10px;
+}
+
+.slider-button.next {
+    right: 10px;
+}

@@ -1,0 +1,397 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* =================================
+   1. PENGATURAN VARIABEL & DASAR
+   ================================= */
+:root {
+    --primary-color: #6750A4;
+    --surface-color: #ffffff;
+    --background-color: #f8f9fa;
+    --text-color: #1D1B20;
+    --text-color-muted: #49454F;
+    --border-color: #e0e0e0;
+    --border-radius-lg: 16px;
+    --border-radius-md: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --transition-speed: 0.3s;
+}
+
+body.dark-mode {
+    --primary-color: #D0BCFF;
+    --surface-color: #1e1e1e;
+    --background-color: #121212;
+    --text-color: #E6E1E5;
+    --text-color-muted: #CAC4D0;
+    --border-color: #444444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding-bottom: 80px; /* Ruang untuk bottom nav mobile */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* =================================
+   2. STRUKTUR LAYOUT UTAMA
+   ================================= */
+.main-content {
+    padding: 20px;
+}
+
+/* =================================
+   3. KOMPONEN: NAVIGASI (SIDEBAR/BOTTOM NAV)
+   ================================= */
+.bottom-navbar {
+    background-color: var(--surface-color);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.nav-item {
+    color: var(--text-color-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px;
+    transition: color var(--transition-speed) ease;
+}
+
+.nav-item .icon { font-size: 24px; }
+.nav-item .label { font-size: 12px; font-weight: 500; }
+.nav-item.active { color: var(--primary-color); }
+.nav-item#theme-toggle { cursor: pointer; }
+
+/* Header sidebar disembunyikan di mobile */
+.sidebar-header { display: none; }
+
+/* =================================
+   4. KOMPONEN: KARTU & STATISTIK
+   ================================= */
+.card {
+    background-color: var(--surface-color);
+    padding: 24px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    transition: background-color var(--transition-speed) ease;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.stat-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--primary-color); display: block; }
+.stat-label { font-size: 1rem; color: var(--text-color-muted); margin-top: 5px; display: block; }
+
+
+/* =================================
+   5. KOMPONEN: TABEL
+   ================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap; /* Mencegah teks turun baris */
+}
+
+th { font-weight: 700; }
+tbody tr:hover { background-color: rgba(0,0,0,0.02); }
+body.dark-mode tbody tr:hover { background-color: rgba(255,255,255,0.02); }
+
+
+/* =================================
+   6. KOMPONEN: TOMBOL (BUTTONS)
+   ================================= */
+.btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary { background-color: var(--primary-color); }
+.btn-edit { background-color: #5cb85c; }
+.btn-hapus { background-color: #d9534f; }
+.desktop-add-button { display: none; } /* Sembunyi di mobile */
+
+/* Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1001;
+    /* Properti dari .btn yang di-include */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.fab:hover { transform: scale(1.05); }
+
+/* =================================
+   7. KOMPONEN: FORMULIR
+   ================================= */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color-muted); }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    color: var(--text-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px #E8DEF8;
+}
+
+.dynamic-form {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    margin: 15px 0 15px 5px;
+}
+
+
+/* =================================
+   8. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ================================= */
+@media (min-width: 769px) { /* Tampilan Desktop */
+    body {
+        padding-bottom: 0;
+        display: flex;
+    }
+    .main-content {
+        flex-grow: 1;
+        margin-left: 240px;
+    }
+    .bottom-navbar { /* Berubah menjadi sidebar */
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 20px;
+        gap: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .sidebar-header {
+        display: block;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+    .nav-item { /* Berubah menjadi link sidebar */
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 15px;
+        padding: 12px 16px;
+        border-radius: 50px;
+    }
+    .nav-item.active { background-color: #E8DEF8; }
+    body.dark-mode .nav-item.active { background-color: #4A4458; }
+    .nav-item:hover { background-color: rgba(0,0,0,0.05); }
+    body.dark-mode .nav-item:hover { background-color: rgba(255,255,255,0.05); }
+
+    .fab { display: none; }
+    .desktop-add-button { display: inline-flex; }
+}
+
+
+@media (max-width: 768px) { /* Tampilan Mobile */
+    
+    /* Perbaikan untuk tombol aksi di tabel agar tidak rapat */
+    td:last-child {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* =================================
+   9. KOMPONEN: KARTU PESANAN (ORDER CARD)
+   ================================= */
+.order-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.order-card {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.order-card:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.card-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.customer-name {
+    font-size: 1.1rem;
+}
+
+.address-tag {
+    background-color: #E8DEF8;
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+body.dark-mode .address-tag {
+    background-color: #4A4458;
+    color: var(--primary-color);
+}
+
+.card-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.5s ease-out;
+}
+
+.order-card.active .card-details {
+    max-height: 500px; /* Tinggi maksimal saat terbuka */
+    opacity: 1;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.detail-summary, .detail-price {
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.detail-price {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Style untuk kartu pesanan yang sudah selesai */
+.order-card.status-selesai {
+    border-left: 5px solid #28a745; /* Garis hijau di kiri */
+    opacity: 0.7; /* Sedikit transparan */
+}
+
+.order-card.status-selesai:hover {
+    opacity: 1; /* Kembali normal saat di-hover */
+}
+
+/* Di dalam dark mode, buat warna hijau lebih cerah */
+body.dark-mode .order-card.status-selesai {
+    border-left-color: #3ddc84;
+}
